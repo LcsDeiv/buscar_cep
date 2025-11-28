@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
-import './App.css';
+import './style.css';
 
-function App() {
+function Home() {
 
   const [cep, setCep] = useState("");
   const [dados, setDados] = useState(null);
@@ -133,4 +133,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

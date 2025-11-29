@@ -1,35 +1,25 @@
-# Consulta CEP — React App
----
+# Consulta CEP – Aplicação React
 
-### Aplicação simples desenvolvida em React para consultar CEPs utilizando a BrasilAPI, com funcionalidades adicionais como modo escuro, histórico de buscas e validação automática de entrada.
-
-* Funcionalidades
-
-* Busca de CEP usando a BrasilAPI
-
-* Tema Dark/Light com persistência no localStorage
-
-* Histórico de CEPs já consultados
-
-* Validação automática (aceita apenas números e até 8 dígitos)
-
-* Histórico salvo automaticamente no navegador
-
-* Mensagens de erro quando o CEP for inválido ou não encontrado
-
+Este projeto é uma aplicação simples para consulta de CEP utilizando a API pública ViaCEP.  
+O usuário pode pesquisar qualquer CEP do Brasil, visualizar os dados do endereço, alternar entre modo claro e escuro e manter um histórico de buscas salvo no navegador.
 
 ---
 
 ## Tecnologias Utilizadas
 
-* React.js
+- React.js – biblioteca principal da interface
+- Axios – cliente HTTP utilizado para fazer requisições à API ViaCEP
+- React Icons – biblioteca de ícones usada na interface (ícone de pesquisa, modo claro e modo escuro)
+- LocalStorage – utilizado para salvar o histórico e o tema do usuário
+- CSS – utilizado para estilização da aplicação
 
-* React Icons
+---
 
-* JavaScript (ES6+)
+## Instalação
 
-* CSS
+Clone o repositório e instale as dependências:
 
-* Fetch API
-
-* LocalStorage
+```bash
+git clone https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
+cd NOME_DO_REPOSITORIO
+npm install

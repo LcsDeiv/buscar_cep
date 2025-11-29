@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
+import api from '../pages/api';
 import './style.css';
 
-function Home() {
+function Search() {
 
   const [cep, setCep] = useState("");
   const [dados, setDados] = useState(null);
@@ -12,36 +13,36 @@ function Home() {
   const [historico, setHistorico] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
 
-  // carregar histórico salvo ao iniciar
+  // carregar histórico e tema ao abrir a página
   useEffect(() => {
     const salvo = localStorage.getItem("historicoCEPs");
-    if (salvo) {
-      setHistorico(JSON.parse(salvo));
+    if (salvo) setHistorico(JSON.parse(salvo));
 
-      
     const temaSalvo = localStorage.getItem("tema");
     if (temaSalvo === "dark") setDarkMode(true);
-    }
+
   }, []);
 
-  // salvar histórico sempre que ele mudar
+  // salvar histórico sempre que mudar
   useEffect(() => {
     localStorage.setItem("historicoCEPs", JSON.stringify(historico));
   }, [historico]);
 
+  // salvar tema sempre que mudar
   useEffect(() => {
     localStorage.setItem("tema", darkMode ? "dark" : "light");
   }, [darkMode]);
 
-  // permitir apenas números e até 8 dígitos
+  // permitir apenas números e máximo 8 dígitos
   useEffect(() => {
     const apenasDigitos = cep.replace(/\D/g, "").slice(0, 8);
+
     if (apenasDigitos !== cep) {
       setCep(apenasDigitos);
     }
-    if (erro && cep.length > 0) {
-      setErro(false);
-    }
+
+    if (erro && cep.length > 0) setErro(false);
+
   }, [cep, erro]);
 
   const buscarCep = () => {
@@ -50,19 +51,18 @@ function Home() {
       return;
     }
 
-    fetch(`https://brasilapi.com.br/api/cep/v1/${cep}`)
-      .then(res => res.json())
-      .then(data => {
-        if (data.errors) {
+    api.get(`${cep}/json`)
+      .then(res => {
+        const data = res.data;
+
+        if (data.erro) {
           alert(`CEP: ${cep} INVÁLIDO OU NÃO ENCONTRADO.`);
           setErro(true);
           setDados(null);
-
         } else {
           setErro(false);
           setDados(data);
 
-          // adiciona ao histórico se não estiver ainda
           setHistorico(prev => {
             if (prev.includes(cep)) return prev;
             return [cep, ...prev];
@@ -81,8 +81,8 @@ function Home() {
   };
 
   return (
-    
     <div className={darkMode ? "container dark" : "container"}>
+
       <button className="dark-btn" onClick={() => setDarkMode(!darkMode)}>
         {darkMode ? <CiLight /> : <MdDarkMode />}
       </button>
@@ -107,9 +107,9 @@ function Home() {
       {dados && (
         <main className='main'>
           <h2>CEP: {dados.cep}</h2>
-          <span>{dados.street}</span>
-          <span>{dados.neighborhood}</span>
-          <span>{dados.city} - {dados.state}</span>
+          <span>{dados.logradouro}</span>
+          <span>{dados.bairro}</span>
+          <span>{dados.localidade} - {dados.uf}</span>
         </main>
       )}
 
@@ -122,7 +122,6 @@ function Home() {
             ))}
           </ul>
 
-          {/* Botão sem ícone para limpar histórico */}
           <button onClick={limparHistorico} className='limpar'>
             Limpar Histórico
           </button>
@@ -133,4 +132,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Search;

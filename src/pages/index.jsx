@@ -107,9 +107,9 @@ function Search() {
       {dados && (
         <main className='main'>
           <h2>CEP: {dados.cep}</h2>
-          <span>{dados.logradouro}</span>
-          <span>{dados.bairro}</span>
-          <span>{dados.localidade} - {dados.uf}</span>
+          <p>Logradouro: <span> {dados.logradouro}</span></p>
+          <p>Bairro: <span> {dados.bairro}</span></p>
+          <p>Cidade/UF: <span> {dados.localidade} - {dados.uf}</span></p>
         </main>
       )}
 

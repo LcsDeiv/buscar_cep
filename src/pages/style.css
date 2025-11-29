@@ -146,9 +146,15 @@
 
 }
 
-.main span{
-  margin-bottom: 16px;
+.main p{
   font-weight: bold;
+  margin-bottom: 16px;
+
+}
+
+.main span{
+  
+  font-weight: normal;
 }
 
 .historico{

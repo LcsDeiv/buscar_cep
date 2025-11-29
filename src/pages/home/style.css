@@ -70,6 +70,7 @@
 
 .title{
   color: white;
+  animation: flipTitle 5s;
   font-size: 70px;
   
 

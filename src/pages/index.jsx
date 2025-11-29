@@ -97,6 +97,8 @@ function Search() {
           value={cep}
           onChange={(e) => setCep(e.target.value)}
           maxLength={8}
+          onKeyDown={(e) => e.key === "Enter" && buscarCep()}
+
         />
 
         <button className='botao' onClick={buscarCep}>

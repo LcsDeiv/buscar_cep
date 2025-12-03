@@ -44,5 +44,5 @@ ___
 
 Após instalar as dependências, execute o comando:
 
-```uvicorn main:app --reload```
+```uvicorn app.main:app --reload```
 

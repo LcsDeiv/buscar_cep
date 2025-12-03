@@ -15,11 +15,34 @@ O usuário pode pesquisar qualquer CEP do Brasil, visualizar os dados do endere�
 
 ---
 
-## Instalação
+# Como instalar as dependências (requirements.txt)
 
-Clone o repositório e instale as dependências:
 
-```bash
-git clone https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
-cd NOME_DO_REPOSITORIO
-npm install
+### Antes de tudo, garanta que você tem o Python 3.10+ instalado.
+
+### Crie e ative um ambiente virtual (opcional, porém recomendado):
+
+```python -m venv venv```
+
+
+Ativar no Windows:
+
+```venv\Scripts\activate```
+
+
+Ativar no Linux/Mac:
+
+```source venv/bin/activate```
+
+
+Instale todas as dependências:
+
+```pip install -r requirements.txt```
+___
+
+# Como rodar o projeto
+
+Após instalar as dependências, execute o comando:
+
+```uvicorn main:app --reload```
+
